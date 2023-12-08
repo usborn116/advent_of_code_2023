@@ -34,7 +34,8 @@ points = INPUT[1..-1].map{|g| Point.new(g)}
 def get_answer(dir, points)
     ans = 0
     steps = dir.steps.cycle
-    # part 1 start = points.find{|p| p.id == 'AAA'}
+    
+# ---- START PART 2 ---- #
     currs = points.filter{|p| p.id[2] == 'A'}
     steps_arr = []
     currs.each do |curr|
@@ -47,16 +48,17 @@ def get_answer(dir, points)
         steps_arr << res
     end
 
-=begin **PART 1**
+    ans = steps_arr[1..-1].reduce(steps_arr[0]){|acc, val| acc.lcm(val)}
+# ---- END PART 2 ---- #
+
+=begin # ---- START PART 1 ---- #
+    curr = points.find{|p| p.id == 'AAA'}
     until curr.id == 'ZZZ'
         step = steps.next
         curr = points.find{|p| p.id == curr.next_dir(step)}
         ans += 1
     end
-=end
-
-    #part 2 ans
-    ans = steps_arr[1..-1].reduce(steps_arr[0]){|acc, val| acc.lcm(val)}
+=end # ---- END PART 1 ---- #
 
     ans
 end
