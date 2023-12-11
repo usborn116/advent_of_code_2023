@@ -43,8 +43,6 @@ class Hand
             non_j[-1][-1] += j[-1][-1]
             @cards = non_j.map{|c| c[0] * c[-1]}.join.split('')
         end
-
-
     end
 
     def five_kind
